@@ -32,6 +32,31 @@ function getHypotenuseAndAreaMsg(hypot, area) {
   return msg;
 }
 
+/** Get results: validate, calculate & get message.
+ * returns {aMsg, bMsg, msg}
+ *
+ * aMsg and bMsg are empty if triangle is valid.
+ */
+
+ function getResultsFromSideLengths(a, b) {
+  const aOk = validateEdge(a);
+  const bOk = validateEdge(b);
+
+  const aMsg = aOk ? "" : "Invalid!";
+  const bMsg = bOk ? "" : "Invalid!";
+
+  let msg;
+
+  if (aOk && bOk) {
+    const {area, hypot} = calcAreaHypotenuse(a, b);
+    msg = getHypotenuseAndAreaMsg(hypot, area);
+  } else {
+    msg = "";
+  }
+
+  return {aMsg, bMsg, msg}
+}
+
 /* Handle UI: get form data & update HTML */
 
 function processForm(evt) {
@@ -39,21 +64,7 @@ function processForm(evt) {
   let a = +document.getElementById("side-a").value;
   let b = +document.getElementById("side-b").value;
 
-  let aOk = validateEdge(a);
-  let bOk = validateEdge(b);
-
-  console.log("aOk", aOk);
-  let aMsg = aOk ? "" : "Invalid!";
-  let bMsg = bOk ? "" : "Invalid!";
-
-  let msg;
-
-  if (aOk && bOk) {
-    let { area, hypot } = calcAreaHypotenuse(a, b);
-    msg = getHypotenuseAndAreaMsg(hypot, area);
-  } else {
-    msg = "";
-  }
+  const msgs = getResultsFromSideLengths(a, b);
 
   document.getElementById("a-msg").innerHTML = aMsg;
   document.getElementById("b-msg").innerHTML = bMsg;

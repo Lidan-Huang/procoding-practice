@@ -34,12 +34,8 @@ it('should craft correct message', function () {
 });
 
 it('should generate correct results', function () {
-  // we'd like to have tests like this:
-  // 
-  // expect(getResultsFromSideLengths(3, 4)).toEqual(
-  //   {aMsg: "", bMsg: "", msg: "Hypotenuse is 5 and area is 6."});
-  //   
-  // TODO test an invalid submission here
+  expect(getResultsFromSideLengths(3, 4)).toEqual(
+    { aMsg: "", bMsg: "", msg: "Hypotenuse is 5 and area is 6." });
+  expect(getResultsFromSideLengths(-1, 4)).toEqual(
+    { aMsg: "Invalid", bMsg: "", msg: "" });
 });
-
-
