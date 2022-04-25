@@ -8,11 +8,28 @@ function validateEdge(size) {
     size <= 50);
 }
 
-/**calculate area and hypotenuse of a right angle triangle of side a and b, return area and hypotenuse*/
+/**Calculate area and hypotenuse of a right angle triangle
+ * input: side a and b
+ * return: object, {area, hypotenuse}
+ */
+
 function calcAreaHypotenuse(a, b) {
   let area = a * b / 2;
   let hypot = Math.round(Math.sqrt(a * a + b * b));
   return { area, hypot };
+}
+
+/**Get msg about hypotenuse and area
+ * input: values of hypotenuse and area
+ * return: string(msg)
+ */
+
+function getHypotenuseAndAreaMsg(hypot, area) {
+  let msg = `Hypotenuse is ${hypot} and area is ${area}.`;
+  if (area > 50) {
+    msg += ` That's a really big triangle!`;
+  }
+  return msg;
 }
 
 /* Handle UI: get form data & update HTML */
@@ -32,15 +49,8 @@ function processForm(evt) {
   let msg;
 
   if (aOk && bOk) {
-    // let area = a * b / 2;
-    // let hypot = Math.floor(Math.sqrt(a * a + b * b));
     let { area, hypot } = calcAreaHypotenuse(a, b);
-    msg = `Hypotenuse is ${hypot} and area is ${area}.`;
-    console.log("msg:", msg);
-
-    if (area > 50) {
-      msg += ` That's a really big triangle!`;
-    }
+    msg = getHypotenuseAndAreaMsg(hypot, area);
   } else {
     msg = "";
   }
