@@ -29,35 +29,36 @@ const LETTER_TO_VALUE= {
   Z: 10
 };
 
-// let keysOfAlphabetScores = Object.keys(alphabetScores);
 
-/**calculate every word's alphabets scores in a array, return a new array that holds each word's score*/ 
-function wordScores(words) {  //function scoreWords(words)
+/**Calculate every word's alphabets scores in a array
+ * input: an array of words
+ * return a new array that holds each word's score
+ */ 
+function scoreWords(words) {
   let wordsScores = [];
   for (let word of words) {
-    // let wordScore = singleWordScore(word);
-    wordsScores.push(singleWordScore(word));
+    wordsScores.push(scoreSingleWord(word));
   }
+
   return wordsScores;
 }
 
-/**add each alphabet scores in a single word, return the score*
- * if word contains something else except alphabets, return null */
+/**Add each alphabet scores in a single word, 
+ * input: string(a word)
+ * return: number(the score of a word)
+ * if word contains something else except alphabets, return null 
+ */
 
-function singleWordScore(word) {
+function scoreSingleWord(word) {
   let singleWordScore = 0;
   for(let letter of word) {
-    // if(! keysOfAlphabetScores.includes(letter.toUpperCase())) {
-    //   return singleWordScore = null;
-    // } else {
-    //   singleWordScore += alphabetScores[letter.toUpperCase()];
-    // }
     if(LETTER_TO_VALUE[letter.toUpperCase()] === undefined) {
       return null;
     } else {
       singleWordScore += LETTER_TO_VALUE[letter.toUpperCase()];
     }
   }
+
   return singleWordScore;
 }
 
