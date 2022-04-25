@@ -1,3 +1,6 @@
+"use strict";
+
+/** Test function mostPopular */
 it("should find the most popular", function() {
   expect(mostPopular("abbaaac")).toEqual(["a"]);
   expect(mostPopular("vroom")).toEqual(["o"]);

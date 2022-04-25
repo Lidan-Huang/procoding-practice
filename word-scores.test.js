@@ -1,6 +1,6 @@
 "use strict";
 
-/** Test function word-scores */
+/** Test function scoreWords */
 
 it("should find the scores for each word", function() {
   expect(scoreWords(["a", "b", "c"])).toEqual([1, 3, 3]);

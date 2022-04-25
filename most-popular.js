@@ -1,33 +1,17 @@
 "use strict";
 
-// function mostPopular(s) {
-//   let ltr_obj = {};
-//   let common = [];
-//   let high = 0;
-//   for (let letter of s) {
-//     const count = (ltr_obj[letter] || 0) + 1;
-//     ltr_obj[letter] = count;
-//     if (count > high) {
-//       common = [letter];
-//       high = count;
-//     } else if (count == high) {
-//       common.push(letter);
-//     }
-//   }
-
-//   return common;
-// }
-
-/** calculate most popular letters in a string, return an array of that popular letters */ 
+/** Calculate most popular letters in a string
+ * input: string(a word), like "aba"
+ * return: an array of the most popular letter(s), like ['a']
+ */ 
 
 function mostPopular(letters) {
-  let lettersObj = getFrequency(letters);
-  let highestCount = maxCount(lettersObj);
-  // let keys = Object.keys(lettersObj);
+  let lettersFrequency = getFrequency(letters);
+  let highestCount = maxCount(lettersFrequency);
   let common = [];
 
-  for(let key in lettersObj) {
-    if(lettersObj[key] === highestCount) {
+  for(let key in lettersFrequency) {
+    if(lettersFrequency[key] === highestCount) {
       common.push(key);
     }
   }
@@ -35,17 +19,13 @@ function mostPopular(letters) {
 }
 
 
-/** make a string into an object and return it*/ 
+/** Make a string into an object
+ *  input: a string, like 'aba'
+ *  return: an object, like {'a': 2, 'b': 1}
+ */ 
 function getFrequency(letters) { 
   let letterFrequency = {};
-  // for(let letter of letters) {
-  //   let keysOfLetters = Object.keys(letterFrequency);
-  //   if(! keysOfLetters.includes(letter)) {
-  //     letterFrequency[letter] = 1;
-  //   } else {
-  //     letterFrequency[letter] += 1;
-  //   }
-  // }
+  
   for(let letter of letters) {
     if(letterFrequency[letter] === undefined) {
       letterFrequency[letter] = 1;
@@ -57,26 +37,10 @@ function getFrequency(letters) {
 }
 
 
-/** find the largest value in an object and return it*/ 
-function maxCount(obj) {
-  // let maxCount = 0;
-  // for(let key of Object.keys(obj)) {
-  //   if(obj[key] > maxCount) {
-  //     maxCount = obj[key];
-  //   }
-  // }
-
-  // for(let key in obj) {
-  //   if(obj[key] > maxCount) {
-  //     maxCount = obj[key];
-  //   }
-  // }
-
-  // return maxCount;
-  
-  // let maxCount = Math.max(...Object.values(obj));
-  // return maxCount;
-  return Math.max(...Object.values(obj));
+/** Find the largest value in an object 
+ * input: an object, like {'a': 2, 'b': 1}
+ * return: the max value, like 2 
+ */ 
+function maxCount(lettersFrequency) {
+  return Math.max(...Object.values(lettersFrequency));
 }
-
-// Math.max(...Object.values(obj));
